@@ -107,11 +107,6 @@ section.block { padding: 72px 0 8px; }
 .steps h3 { font-size: 21px; font-weight: 800; margin-bottom: 4px; }
 .steps p { color: var(--muted); font-size: 16px; }
 
-.app { margin-top: 72px; padding: 30px 0; border-top: 2px dashed var(--line); }
-.app .wrap { display: grid; gap: 8px; max-width: 760px; margin-left: max(16px, (100% - 1080px) / 2); }
-.app h2 { font-size: 22px; font-weight: 800; }
-.app p { color: var(--muted); font-size: 15.5px; }
-
 footer { background: var(--grass-deep); color: #E6F2E8; padding: 26px 0 30px; font-size: 15px; }
 footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
 footer a { color: #fff; }

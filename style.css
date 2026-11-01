@@ -1,0 +1,140 @@
+/* Little Mouse · 小鼠学中文 — palette taken from the episode thumbnails:
+   sky, grass, tomato-red Hanzi, gold pinyin, the mouse's teal hoodie. */
+:root {
+  --sky: #CFE9F8;
+  --sky-deep: #9FD2F0;
+  --paper: #FBFDFC;
+  --grass: #63B552;
+  --grass-deep: #2E7D3B;
+  --tomato: #E2533A;
+  --gold: #F2A20C;
+  --teal: #1C9486;
+  --ink: #23302C;
+  --muted: #5A6763;
+  --line: #DCE7E3;
+  --f-display: "Baloo 2", "Be Vietnam Pro", system-ui, sans-serif;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-zh: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.65 var(--f-body); }
+img { max-width: 100%; display: block; }
+a { color: var(--teal); text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+[lang="zh"] { font-family: var(--f-zh); }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.12; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+.wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+
+/* ---------- top bar ---------- */
+.bar { position: absolute; inset: 0 0 auto; z-index: 2; padding-block: 18px; }
+.bar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; background: #fff; border: 3px solid var(--teal);
+  border-radius: 999px; padding: 4px 14px 4px 6px; text-decoration: none; color: var(--ink);
+  font: 800 19px/1 var(--f-display); }
+.logo .m { color: var(--tomato); }
+.logo .tag { font: 700 13px/1 var(--f-zh); color: #fff; background: var(--teal); border-radius: 999px; padding: 5px 8px; }
+.bar nav a { font-weight: 600; font-size: 15px; color: var(--ink); text-decoration: none; }
+.bar nav a:hover { text-decoration: underline; }
+
+/* ---------- hero: the channel name read like an episode title ---------- */
+.hero { position: relative; overflow: hidden; padding: 120px 0 0;
+  background: linear-gradient(180deg, var(--sky-deep) 0%, var(--sky) 62%, #E6F4EA 100%); }
+.cloud { position: absolute; width: 170px; height: 54px; background: #fff; border-radius: 999px; opacity: .92; }
+.cloud::before, .cloud::after { content: ""; position: absolute; background: #fff; border-radius: 50%; }
+.cloud::before { width: 74px; height: 74px; left: 26px; top: -36px; }
+.cloud::after { width: 56px; height: 56px; left: 84px; top: -24px; }
+.cloud.c1 { right: 9%; top: 92px; }
+.cloud.c2 { left: -50px; top: 230px; transform: scale(.7); }
+
+.title { position: relative; display: grid; grid-template-columns: repeat(5, auto); justify-content: start;
+  column-gap: clamp(2px, .6vw, 10px); }
+.ch { display: grid; justify-items: center; }
+.py { font: 800 clamp(16px, 3vw, 34px)/1 var(--f-display); color: var(--gold);
+  -webkit-text-stroke: 5px #fff; paint-order: stroke fill; margin-bottom: .18em; }
+.hz { font: 900 clamp(56px, 13.5vw, 168px)/1 var(--f-zh); color: var(--tomato);
+  -webkit-text-stroke: clamp(6px, 1.4vw, 14px) #fff; paint-order: stroke fill;
+  text-shadow: 0 .05em 0 rgba(35, 48, 44, .18); }
+
+/* karaoke sweep: each syllable lights up in turn, once, like the narration in the videos */
+@media (prefers-reduced-motion: no-preference) {
+  .py { animation: sing .5s ease-out both; animation-delay: calc(.35s + var(--i) * .42s); }
+  .hz { animation: hop .5s cubic-bezier(.3, 1.6, .5, 1) both; animation-delay: calc(.35s + var(--i) * .42s); }
+  @keyframes sing { from { color: #fff; } 40% { color: #FFE08A; } to { color: var(--gold); } }
+  @keyframes hop { 0% { transform: translateY(0); } 45% { transform: translateY(-.08em); } 100% { transform: translateY(0); } }
+}
+
+.badge { display: inline-block; margin-top: 26px; background: var(--teal); color: #fff; border: 4px solid #fff;
+  border-radius: 999px; padding: 6px 20px; font: 800 clamp(18px, 2.6vw, 26px)/1.2 var(--f-display); }
+.lede { max-width: 34em; margin-top: 22px; font-size: clamp(17px, 2vw, 19px); }
+.cta { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; background: var(--tomato); color: #fff;
+  text-decoration: none; font: 800 19px/1 var(--f-display); padding: 15px 24px 13px; border-radius: 999px;
+  box-shadow: 0 4px 0 #A9321F; }
+.cta:hover { background: #D2462E; }
+.cta:active { transform: translateY(2px); box-shadow: 0 2px 0 #A9321F; }
+.cta svg { width: 22px; height: 22px; }
+
+/* the path and the grass the mouse walks on in every episode */
+.ground { position: relative; height: 110px; margin-top: 56px; }
+.ground::before { content: ""; position: absolute; inset: 0 -5% 46px; background: #9ED37E; border-radius: 50% 50% 0 0 / 70px 70px 0 0; }
+.ground::after { content: ""; position: absolute; inset: auto 0 0; height: 58px;
+  background: repeating-linear-gradient(90deg, transparent 0 46px, rgba(160, 112, 50, .18) 46px 70px) 0 22px / 100% 8px no-repeat,
+    linear-gradient(#E9C98E 0 30px, var(--grass) 30px); }
+
+/* ---------- sections ---------- */
+section.block { padding: 72px 0 8px; }
+.block h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 800; }
+.block .intro { color: var(--muted); max-width: 40em; margin-top: 10px; }
+
+.eps { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 22px;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.ep a { display: grid; gap: 10px; text-decoration: none; color: var(--ink); }
+.ep img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 14px; border: 3px solid #fff;
+  box-shadow: 0 0 0 1px var(--line); }
+.ep a:hover img { box-shadow: 0 0 0 3px var(--teal); }
+.ep .t { font: 700 20px/1.25 var(--f-display); }
+.ep .t span { font-family: var(--f-zh); color: var(--tomato); margin-right: 8px; }
+.ep .s { color: var(--muted); font-size: 15px; }
+
+.steps { list-style: none; margin: 30px 0 0; padding: 0; display: grid; gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); counter-reset: s; }
+.steps li { counter-increment: s; position: relative; padding: 22px 20px 20px 74px; background: #fff;
+  border: 2px solid var(--line); border-radius: 18px; }
+.steps li::before { content: counter(s); position: absolute; left: 18px; top: 18px; width: 40px; height: 40px;
+  border-radius: 50%; background: var(--gold); color: #fff; font: 800 22px/42px var(--f-display); text-align: center; }
+.steps h3 { font-size: 21px; font-weight: 800; margin-bottom: 4px; }
+.steps p { color: var(--muted); font-size: 16px; }
+
+.app { margin-top: 72px; padding: 30px 0; border-top: 2px dashed var(--line); }
+.app .wrap { display: grid; gap: 8px; max-width: 760px; margin-left: max(16px, (100% - 1080px) / 2); }
+.app h2 { font-size: 22px; font-weight: 800; }
+.app p { color: var(--muted); font-size: 15.5px; }
+
+footer { background: var(--grass-deep); color: #E6F2E8; padding: 26px 0 30px; font-size: 15px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; justify-content: space-between; }
+footer a { color: #fff; }
+
+/* ---------- privacy page ---------- */
+.doc { padding: 120px 0 64px; }
+.doc .wrap { max-width: 720px; }
+.doc h1 { font-size: clamp(32px, 5vw, 46px); font-weight: 800; }
+.doc .date { color: var(--muted); margin-top: 6px; }
+.doc h2 { font-size: 22px; font-weight: 800; margin: 34px 0 8px; color: var(--grass-deep); }
+.doc p + p { margin-top: 8px; }
+.doc .en { color: var(--muted); font-size: 15.5px; }
+.doc-top { background: linear-gradient(180deg, var(--sky-deep), var(--sky)); height: 96px; position: absolute; inset: 0 0 auto; }
+
+@media (max-width: 560px) {
+  .bar nav { display: none; }
+  .hero { padding-top: 100px; }
+  .cloud.c1 { top: 70px; right: -30px; transform: scale(.7); }
+  .ground { height: 80px; margin-top: 40px; }
+  section.block { padding-top: 56px; }
+  .steps li { padding-left: 66px; }
+}
+
+/* keep the clouds behind the hero text */
+.hero .wrap { position: relative; z-index: 1; }
+@media (max-width: 560px) { .cloud.c2 { display: none; } .hz { font-size: 15.5vw; } }
